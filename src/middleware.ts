@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   if (slug !== "/") {
     const redirect = request.nextUrl.clone();
     redirect.pathname = `/api/redirect${slug}`;
-
+    console.log(`[middleware] redirecting to ${redirect.pathname}`);
     return NextResponse.rewrite(redirect);
   }
 
