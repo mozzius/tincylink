@@ -44,13 +44,13 @@ const Home: NextPage = () => {
               onClick={onCreate}
               disabled={create.isLoading}
             >
-              Create a tincy link!
+              Create a tincy wincy link!
             </button>
           </div>
           {create.isLoading ? (
             <div className="relative mt-4 cursor-pointer rounded bg-white p-4 shadow-lg">
-              <div className="h-4 w-32 mb-2 bg-gray-200 rounded animate-pulse" />
-              <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
+              <div className="h-5 w-48 mb-3 bg-gray-200 rounded animate-pulse" />
+              <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
               <div className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 transform bg-gray-200 rounded animate-pulse" />
             </div>
           ) : (
