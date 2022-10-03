@@ -24,7 +24,24 @@ const Home: NextPage = () => {
       <Head>
         <title>Tincy Link</title>
         <meta name="description" content="Create a tincy wincy link" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <main className="flex h-screen bg-gray-50">
         <div className="m-auto flex w-full max-w-sm flex-col">
@@ -49,9 +66,9 @@ const Home: NextPage = () => {
           </div>
           {create.isLoading ? (
             <div className="relative mt-4 cursor-pointer rounded bg-white p-4 shadow-lg">
-              <div className="h-5 w-48 mb-3 bg-gray-200 rounded animate-pulse" />
-              <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
-              <div className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 transform bg-gray-200 rounded animate-pulse" />
+              <div className="mb-3 h-5 w-48 animate-pulse rounded bg-gray-200" />
+              <div className="h-4 w-32 animate-pulse rounded bg-gray-200" />
+              <div className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 transform animate-pulse rounded bg-gray-200" />
             </div>
           ) : (
             link && (
