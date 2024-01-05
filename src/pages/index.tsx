@@ -1,23 +1,32 @@
-import { Link } from "@prisma/client";
+import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
-import { FiCopy as CopyIcon } from "react-icons/fi";
+import { Link } from "@prisma/client";
+import { ArrowRight, CheckIcon, CopyIcon } from "lucide-react";
 
-import { trpc } from "../utils/trpc";
+import { api } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState("");
   const [link, setLink] = useState<Link | null>(null);
-  const create = trpc.useMutation("link.create", { onSuccess: setLink });
+  const [copied, setCopied] = useState(false);
+
+  const create = api.link.create.useMutation({
+    onSuccess: setLink,
+    onError: () => alert("Could not create link"),
+  });
 
   const onCreate = () => {
     create.mutate({ url });
   };
 
   const onCopy = (slug: string) => {
+    setCopied(true);
     navigator.clipboard.writeText(`https://tincy.link/${slug}`);
+    setTimeout(() => setCopied(false), 1000);
   };
+
+  const Icon = copied ? CheckIcon : CopyIcon;
 
   return (
     <>
@@ -77,8 +86,11 @@ const Home: NextPage = () => {
                 onClick={() => onCopy(link.slug)}
               >
                 <p className="mb-1">https://tincy.link/{link.slug}</p>
-                <p className="text-sm text-gray-600">{link.url}</p>
-                <CopyIcon className="absolute right-4 top-1/2 -translate-y-1/2 transform" />
+                <div className="flex items-center gap-1 text-gray-600">
+                  <ArrowRight className="h-3 w-3" />
+                  <p className="text-sm">{link.url}</p>
+                </div>
+                <Icon className="absolute right-4 top-1/2 -translate-y-1/2 transform" />
               </div>
             )
           )}
